@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'json'
+
 # Source file and metadata
 class SourceFile
   def initialize(file)
@@ -32,6 +34,15 @@ class SourceFile
 
   def loc
     @loc ||= file_contents.lines.count
+  end
+
+  def to_s
+    to_json
+  end
+
+  def to_json(*options)
+    { class: self.class.name,
+      path: path, parent_component: parent_component }.to_json(*options)
   end
 
   private

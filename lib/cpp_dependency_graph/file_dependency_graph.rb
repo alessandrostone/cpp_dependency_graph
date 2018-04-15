@@ -28,13 +28,7 @@ class FileDependencyGraph
   private
 
   def build_hash_links
-    raw_links = @project.source_components.values.map { |c| [c.name, @project.dependencies(c)] }.to_h
-    @cycle_detector ||= CycleDetector.new(raw_links)
-    links = raw_links.map do |source, source_links|
-      c_links = source_links.map { |target| Link.new(source, target, @cycle_detector.cyclic?(source, target)) }
-      [source, c_links]
-    end.to_h
-    links
+    {}
   end
 
   def build_cyclic_links

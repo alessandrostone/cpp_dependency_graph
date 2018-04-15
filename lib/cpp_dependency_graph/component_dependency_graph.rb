@@ -43,7 +43,8 @@ class ComponentDependencyGraph
   end
 
   def outgoing_links(name)
-    all_links.slice(name)
+    all_links.select {|key, _| key == name }
+    # all_links.slice(name)
   end
 
   def incoming_links(target)

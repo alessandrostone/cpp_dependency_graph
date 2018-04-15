@@ -28,6 +28,7 @@ class IncludeToComponentResolver
   def external_includes_private(component)
     include_components = component.includes.map { |inc| [inc, component_for_include(inc)] }.to_h
     external_include_components = include_components.delete_if { |_, c| c == component.name }
+    # puts external_include_components if component.name == 'Database'
     external_include_components.keys
   end
 

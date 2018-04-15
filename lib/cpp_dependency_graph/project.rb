@@ -37,9 +37,10 @@ class Project
     dirs = fetch_all_dirs(@path)
     components = dirs.map do |dir|
       c = SourceComponent.new(dir)
-      [c.name, c]
+      [c.path, c]
     end.to_h
     components.delete_if { |_, v| v.source_files.size.zero? }
+    components
   end
 
   def fetch_all_dirs(source_dir)
